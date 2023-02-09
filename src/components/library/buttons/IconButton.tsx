@@ -19,24 +19,34 @@ interface Props {
    * Whether the button is enabled or not.Use true, false or enable.
    */
   enabled: boolean;
+  /**
+   * The size of the icon to display in the button.
+   * values are: 'small', 'medium', 'large'
+   */
+  size?: 'small' | 'medium' | 'large';
   fill: string;
   color: string;
 }
+
 /**
  * A button with an icon.
  */
-const IconButton: React.FC<Props> = ({ onClick, icon,enabled, fill, color }) => {
+const IconButton: React.FC<Props> = ({ onClick, icon, enabled, size = 'medium', fill, color }) => {
+  const iconSizeClass = `${styles.icon} ${styles[size]}`;
+
   return (
     
     <motion.button
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       className={styles.iconButton} 
-      onClick={onClick}
+      onClick={() => {
+        onClick();
+      }}
     >
-      {icon === 'bookmark' && <Bookmark color={color} fill={fill} />}
-      {icon === 'heart' && <Heart color={color} fill={fill} />}
-      {icon === 'thumbsup' && <ThumbsUp color={color} fill={fill} />}
+      {icon === 'bookmark' && <Bookmark className={iconSizeClass} color={color} fill={fill} />}
+      {icon === 'heart' && <Heart className={iconSizeClass} color={color} fill={fill} />}
+      {icon === 'thumbsup' && <ThumbsUp className={iconSizeClass} color={color} fill={fill} />}
     </motion.button>
   );
 };

@@ -1,34 +1,51 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import IconButton from './components/library/buttons/IconButton'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [enabledBookmark, setEnabledBookmark] = useState(false);
+  const [enabledHeart, setEnabledHeart] = useState(false);
+  const [enabledThumbsUp, setEnabledThumbsUp] = useState(false);
+  const color = '#00B0C8';
+  const fillBookmark = enabledBookmark ? color : '#fff';
+  const fillHeart = enabledHeart ? color : '#fff';
+  const fillThumbsUp = enabledThumbsUp ? color : '#fff';
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <IconButton
+        onClick={() => {
+          console.log('Button clicked!');
+          setEnabledBookmark(!enabledBookmark);
+        }}
+        icon="bookmark"
+        fill={fillBookmark}
+        color={color}
+        enabled={enabledBookmark}
+      />
+      <IconButton
+        onClick={() => {
+          console.log('Button clicked!');
+          setEnabledHeart(!enabledHeart);
+        }}
+        icon="heart"
+        fill={fillHeart}
+        color={color}
+        enabled={enabledHeart}
+      />
+      <IconButton
+        onClick={() => {
+          console.log('Button clicked!');
+          setEnabledThumbsUp(!enabledThumbsUp);
+        }}
+        icon="thumbsup"
+        fill={fillThumbsUp}
+        color={color}
+        enabled={enabledThumbsUp}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

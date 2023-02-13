@@ -18,15 +18,15 @@ const Episodes = () => {
       <Hero />
       <div className={styles.container}>
         {loading && <Loader />}
-        {data &&
-          data.episodes.results.map((episode: Episode) => {
+        {data?.episodes?.results &&
+          data.episodes.results.map((episode, index) => {
             return (
               <>
-                <List key={episode.episode}>
+                <List key={episode?.episode ?? "failed_episode_key_" + index}>
                   <ListItem disablePadding>
                     <ListItemText
-                      primary={episode.name}
-                      secondary={episode.episode}
+                      primary={episode?.name ?? "Unknown title"}
+                      secondary={episode?.episode ?? "Unknown episode"}
                     />
                   </ListItem>
                 </List>

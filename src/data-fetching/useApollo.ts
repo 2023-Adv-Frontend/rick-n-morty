@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { episode_overview } from "./__generated__/episode_overview";
 
 export interface Episode {
   id: string;
@@ -9,7 +10,7 @@ export interface Episode {
 }
 
 const GET_ALL_EPISODES = gql`
-  {
+  query episode_overview {
     episodes {
       results {
         id
@@ -23,7 +24,7 @@ const GET_ALL_EPISODES = gql`
 `;
 
 const useApollo = () => {
-  return useQuery(GET_ALL_EPISODES);
+  return useQuery<episode_overview>(GET_ALL_EPISODES);
 };
 
 export default useApollo;

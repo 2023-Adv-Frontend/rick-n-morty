@@ -1,12 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import {
-  ApolloClient,
-  ApolloProvider,
-  createHttpLink,
-  InMemoryCache,
-} from "@apollo/client";
+import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache,} from "@apollo/client";
 
 export interface RootProps {
   children: React.ReactNode;
@@ -22,22 +17,21 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const Root = ({ children }: RootProps) => {
+const Root = ({children}: RootProps) => {
   return (
-    <ApolloProvider client={client}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          flexDirection: "column",
-          height: "100%",
-        }}
-      >
-        <Header />
-        {children}
-        <Footer />
-      </div>
-    </ApolloProvider>
+      <ApolloProvider client={client}>
+        <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexDirection: "column",
+            }}
+        >
+          <Header/>
+          {children}
+          <Footer/>
+        </div>
+      </ApolloProvider>
   );
 };
 
